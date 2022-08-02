@@ -3,7 +3,7 @@ import { CreateMeetingDto } from './dto/create-meeting.dto';
 import { UpdateMeetingDto } from './dto/update-meeting.dto';
 
 @Injectable()
-export class MeetingService {
+export class MeetingsService {
   create(createMeetingDto: CreateMeetingDto) {
     return 'This action adds a new meeting';
   }

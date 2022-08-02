@@ -1,7 +1,7 @@
 import {
   Column,
   CreateDateColumn,
-  Entity, ManyToOne,
+  Entity, JoinTable, ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { ContactInfo } from '../../contact-infos/entities/contact-info.entity';
 import { Task } from '../../tasks/entities/task.entity';
+import { Meeting } from '../../meetings/entities/meeting.entity';
 
 @Entity()
 export class Employee {
@@ -21,11 +22,11 @@ export class Employee {
   @Column()
   imageUrl: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
   @ManyToOne(() => Employee, (employee) => employee.directReports, { onDelete: 'SET NULL' })
-  manager: Employee[];
+  manager: Employee;
 
   @OneToMany(() => Employee, (employee) => employee.manager)
   directReports: Employee;
@@ -35,6 +36,10 @@ export class Employee {
 
   @OneToMany(() => Task, (task) => task.employee)
   tasks: Task[];
+
+  @OneToMany(() => Meeting, (meetings) => meetings.attendees)
+  @JoinTable()
+  meetings: Meeting[];
 
   @CreateDateColumn()
   createdAt: Date;

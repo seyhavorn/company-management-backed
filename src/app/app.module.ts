@@ -4,10 +4,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from '../config/typeOrm.config';
 import { ContactInfosModule } from '../modules/contact-infos/contact-infos.module';
 import { TasksModule } from '../modules/tasks/tasks.module';
+import { MeetingsModule } from '../modules/meetings/meetings.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), EmployeesModule, ContactInfosModule, TasksModule],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig), EmployeesModule, ContactInfosModule, TasksModule, MeetingsModule],
   controllers: [],
   providers: [],
 })
+
 export class AppModule {}
