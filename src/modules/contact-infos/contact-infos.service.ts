@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateContactInfoDto } from './dto/create-contact-info.dto';
 import { UpdateContactInfoDto } from './dto/update-contact-info.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,27 +13,42 @@ export class ContactInfosService {
   ) {}
 
   async create(createContactInfoDto: CreateContactInfoDto): Promise<ContactInfo> {
-    const { email, employeeId } = createContactInfoDto;
+    const { email, phone, employeeId } = createContactInfoDto;
     const contactInfo = new ContactInfo();
     contactInfo.email = email;
+    contactInfo.phone = phone;
     contactInfo.employeeId = employeeId;
     await this.contactInfoRepository.save(contactInfo);
     return this.contactInfoRepository.create(contactInfo);
   }
 
-  findAll() {
-    return `This action returns all contactInfo`;
+  async findAll(): Promise<ContactInfo[]> {
+    return this.contactInfoRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${ id } contactInfo`;
+  async findOne(id: number): Promise<ContactInfo> {
+    const found = await this.contactInfoRepository.findOneBy({ id });
+    if (found === null) {
+      throw new NotFoundException(`id ${ id } is not found`);
+    }
+    return found;
   }
 
-  update(id: number, updateContactInfoDto: UpdateContactInfoDto) {
-    return `This action updates a #${ id } contactInfo`;
+  async update(id: number, updateContactInfoDto: UpdateContactInfoDto) {
+    await this.findOne(id);
+    await this.contactInfoRepository.update(id, updateContactInfoDto);
+    const update = await this.findOne(id);
+    return {
+      data: update,
+      message: `Id ${ id } has been update.`,
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${ id } contactInfo`;
+  async remove(id: number) {
+    await this.findOne(id);
+    await this.contactInfoRepository.delete(id);
+    return {
+      message: `Id ${ id } has been deleted.`,
+    }
   }
 }

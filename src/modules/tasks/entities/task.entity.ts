@@ -17,6 +17,9 @@ export class Task {
   @Column()
   name: string;
 
+  @Column()
+  employeeId: Employee["id"];
+
   @ManyToOne(() => Employee, (employee) => employee.tasks, { onDelete: 'SET NULL' })
   @JoinColumn()
   employee: Employee;

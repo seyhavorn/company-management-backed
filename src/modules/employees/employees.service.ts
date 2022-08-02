@@ -22,7 +22,7 @@ export class EmployeesService {
     return this.employeeRepository.create(employee);
   }
 
-  async findAll(): Promise<Employee[]> {
+  findAll(): Promise<Employee[]> {
     return this.employeeRepository.find();
   }
 
