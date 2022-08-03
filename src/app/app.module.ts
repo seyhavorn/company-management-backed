@@ -6,9 +6,10 @@ import { ContactInfosModule } from '../modules/contact-infos/contact-infos.modul
 import { TasksModule } from '../modules/tasks/tasks.module';
 import { MeetingsModule } from '../modules/meetings/meetings.module';
 import { UsersModule } from '../modules/users/users.module';
+import { AuthModule } from '../modules/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), EmployeesModule, ContactInfosModule, TasksModule, MeetingsModule,UsersModule],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig), EmployeesModule, ContactInfosModule, TasksModule, MeetingsModule, UsersModule, AuthModule],
   controllers: [],
   providers: [],
 })
