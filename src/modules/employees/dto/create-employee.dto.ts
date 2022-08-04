@@ -1,12 +1,3 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { Employee } from '../entities/employee.entity';
 
-export class CreateEmployeeDto {
-  @IsNotEmpty()
-  name: string;
-
-  @IsNotEmpty()
-  imageUrl: string;
-
-  @IsString()
-  description: string;
-}
+export class CreateEmployeeDto extends Employee {}

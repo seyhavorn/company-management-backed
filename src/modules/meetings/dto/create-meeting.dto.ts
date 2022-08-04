@@ -1,6 +1,3 @@
-import { IsNotEmpty } from 'class-validator';
+import { Meeting } from '../entities/meeting.entity';
 
-export class CreateMeetingDto {
-  @IsNotEmpty()
-  zoomUrl: string;
-}
+export class CreateMeetingDto extends Meeting {}

@@ -1,9 +1,3 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Task } from '../entities/task.entity';
 
-export class CreateTaskDto {
-  @IsNotEmpty()
-  name: string;
-
-  @IsNotEmpty()
-  employeeId: number;
-}
+export class CreateTaskDto extends Task {}

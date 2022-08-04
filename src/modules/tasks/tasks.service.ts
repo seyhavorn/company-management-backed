@@ -13,7 +13,7 @@ export class TasksService {
   ) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const { name, employeeId } = createTaskDto;
+    const { name, employeeId, } = createTaskDto;
     const task = new Task();
     task.name = name;
     task.employeeId = employeeId;

@@ -13,7 +13,7 @@ export class ContactInfosService {
   ) {}
 
   async create(createContactInfoDto: CreateContactInfoDto): Promise<ContactInfo> {
-    const { email, phone, employeeId } = createContactInfoDto;
+    const { email, phone, employeeId ,} = createContactInfoDto;
     const contactInfo = new ContactInfo();
     contactInfo.email = email;
     contactInfo.phone = phone;

@@ -1,11 +1,3 @@
-import { IsNotEmpty } from 'class-validator';
+import { ContactInfo } from '../entities/contact-info.entity';
 
-export class CreateContactInfoDto {
-  @IsNotEmpty()
-  email: string;
-
-  phone: string;
-
-  @IsNotEmpty()
-  employeeId: number;
-}
+export class CreateContactInfoDto extends ContactInfo {}
